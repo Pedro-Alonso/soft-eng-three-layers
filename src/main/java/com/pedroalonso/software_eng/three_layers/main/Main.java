@@ -4,12 +4,20 @@
  */
 package com.pedroalonso.software_eng.three_layers.main;
 
+import com.pedroalonso.software_eng.three_layers.controllers.PersonController;
+import com.pedroalonso.software_eng.three_layers.entities.Person;
+import java.util.Date;
+
 /**
  *
  * @author pedro
  */
 public class Main {
-    public static void execute(String[] args){
-        System.out.println("Testando");
+    
+    private static PersonController personController = PersonController.getInstance();
+    
+    public static void execute(String[] args) {
+        Person p1 = new Person("Pedro", new Date(), "pedro@email.com", "12345678-90");
+        personController.create(p1);
     }
 }

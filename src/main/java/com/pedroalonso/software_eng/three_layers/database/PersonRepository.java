@@ -34,8 +34,8 @@ public class PersonRepository {
     private String readFile() throws IOException {
 
         StringBuilder personRepo = new StringBuilder();
+        FileReader db = new FileReader(databaseName);
         try {
-            FileReader db = new FileReader(databaseName);
             int ch;
             while ((ch = db.read()) != -1) {
                 personRepo.append((char) ch);
@@ -43,16 +43,20 @@ public class PersonRepository {
             personRepo.toString();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            db.close();
         }
         return personRepo.toString();
     }
 
     private void writeFile(String str) throws IOException {
+        FileWriter db = new FileWriter(databaseName);
         try {
-            FileWriter db = new FileWriter(databaseName);
             db.write(str);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            db.close();
         }
     }
 
@@ -60,7 +64,10 @@ public class PersonRepository {
         this.repository.add(person);
         try {
             String repoData = readFile();
-            repoData.concat(repoData + ";" + person.toString());
+            if (repoData.length() > 0) {
+                repoData = repoData.concat(";");
+            }
+            repoData = repoData.concat(person.toString());
             writeFile(repoData);
         } catch (Exception e) {
             e.printStackTrace();
