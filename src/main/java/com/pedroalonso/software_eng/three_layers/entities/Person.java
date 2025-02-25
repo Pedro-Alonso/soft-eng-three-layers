@@ -26,6 +26,11 @@ public class Person {
         this.document = document;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s,%s,%s,%s", id, document, email, birthDate.toString());
+    }
+
     public UUID getId() {
         return id;
     }
