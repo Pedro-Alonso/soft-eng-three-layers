@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.pedroalonso.eng.soft.three.layers;
+package com.pedroalonso.software_eng.three_layers;
 
-import com.pedroalonso.eng.soft.three.layers.main.Main;
+import com.pedroalonso.software_eng.three_layers.main.Main;
 
 /**
  *

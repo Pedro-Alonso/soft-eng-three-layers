@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pedroalonso.eng.soft.three.layers.controllers;
+package com.pedroalonso.software_eng.three_layers.controllers;
 
-import com.pedroalonso.eng.soft.three.layers.database.PersonRepository;
+import com.pedroalonso.software_eng.three_layers.database.PersonRepository;
 import java.util.ArrayList;
-import com.pedroalonso.eng.soft.three.layers.entities.Person;
+import com.pedroalonso.software_eng.three_layers.entities.Person;
 
 /**
  *

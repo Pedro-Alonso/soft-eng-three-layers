@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pedroalonso.eng.soft.three.layers.database;
+package com.pedroalonso.software_eng.three_layers.database;
 
-import com.pedroalonso.eng.soft.three.layers.entities.Person;
+import com.pedroalonso.software_eng.three_layers.entities.Person;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,17 +31,19 @@ public class PersonRepository {
     }
 
     private String readFile() throws IOException {
+
+        StringBuilder personRepo = new StringBuilder();
         try {
             FileReader db = new FileReader(databaseName);
-            StringBuilder personRepo = new StringBuilder();
             int ch;
             while ((ch = db.read()) != -1) {
                 personRepo.append((char) ch);
             }
-            return personRepo.toString();
+            personRepo.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return personRepo.toString();
     }
 
     public void save(Person person) {
