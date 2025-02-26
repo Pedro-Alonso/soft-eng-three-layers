@@ -5,10 +5,13 @@
 package com.pedroalonso.software_eng.three_layers.database;
 
 import com.pedroalonso.software_eng.three_layers.entities.Person;
+import com.pedroalonso.software_eng.three_layers.mappers.PersonMapper;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  *
@@ -17,16 +20,23 @@ import java.util.ArrayList;
 public class PersonRepository {
 
     private static PersonRepository instance;
+    private static PersonMapper mapper;
     private static ArrayList<Person> repository;
-    private static String databaseName = "personRepo.json";
+    private static String databaseName = "personRepo.txt";
 
-    private PersonRepository() {
-        repository = new ArrayList<Person>();
+    private PersonRepository() throws IOException {
+        mapper = PersonMapper.getInstance();
+        String fileData = readFile();
+        repository = fileData.isBlank() ? new ArrayList<Person>() : mapper.manyPlainToManyInstance(readFile());
     }
 
     public static synchronized PersonRepository getInstance() {
         if (instance == null) {
-            instance = new PersonRepository();
+            try {
+                instance = new PersonRepository();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return instance;
     }
@@ -72,5 +82,11 @@ public class PersonRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Optional<Person> getById(UUID id) {
+        return repository.stream()
+                .filter(person -> person.getId().equals(id))
+                .findFirst();
     }
 }

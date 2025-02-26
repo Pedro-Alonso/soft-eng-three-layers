@@ -7,6 +7,8 @@ package com.pedroalonso.software_eng.three_layers.controllers;
 import com.pedroalonso.software_eng.three_layers.database.PersonRepository;
 import java.util.ArrayList;
 import com.pedroalonso.software_eng.three_layers.entities.Person;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  *
@@ -28,8 +30,13 @@ public class PersonController {
 
         return instance;
     }
-    
-    public void create(Person p){
+
+    public void create(Person p) {
         personRepository.save(p);
+    }
+
+    public Person getById(UUID id) {
+        Optional<Person> nullishPerson = personRepository.getById(id);
+        return nullishPerson.orElse(null);
     }
 }

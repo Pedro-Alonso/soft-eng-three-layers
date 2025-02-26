@@ -4,7 +4,7 @@
  */
 package com.pedroalonso.software_eng.three_layers.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -15,11 +15,19 @@ public class Person {
 
     private UUID id = UUID.randomUUID();
     private String name;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String email;
     private String document;
 
-    public Person(String name, Date birthDate, String email, String document) {
+    public Person(String name, LocalDate birthDate, String email, String document) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.document = document;
+    }
+
+    public Person(String id, String name, LocalDate birthDate, String email, String document) {
+        this.id = UUID.fromString(id);
         this.name = name;
         this.birthDate = birthDate;
         this.email = email;
@@ -28,7 +36,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s", id, document, email, birthDate.toString());
+        return String.format("%s,%s,%s,%s,%s", id, document, name, email, birthDate.toString());
     }
 
     public UUID getId() {
@@ -43,11 +51,11 @@ public class Person {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
