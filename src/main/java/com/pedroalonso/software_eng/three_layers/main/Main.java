@@ -6,7 +6,9 @@ package com.pedroalonso.software_eng.three_layers.main;
 
 import com.pedroalonso.software_eng.three_layers.controllers.PersonController;
 import com.pedroalonso.software_eng.three_layers.entities.Person;
+import com.pedroalonso.software_eng.three_layers.utils.Utils;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -15,10 +17,28 @@ import java.util.UUID;
  */
 public class Main {
 
+    private static Main instance;
     private static PersonController personController = PersonController.getInstance();
 
+    private Main() {
+    }
+
+    public static synchronized Main getInstance() {
+        if (instance == null) {
+            instance = new Main();
+        }
+        return instance;
+    }
+
     public static void execute(String[] args) {
-        Person p1 = new Person("Pedro", LocalDate.now(), "pedro@email.com", "12345678-90");
-        personController.create(p1);
+        Main program = Main.getInstance();
+        program.startProgram();
+    }
+
+    private static synchronized void startProgram() {
+        ArrayList<Person> currentDatabase = personController.getAll();
+        if (currentDatabase.isEmpty()) {
+            Utils.seedDatabase();
+        }
     }
 }

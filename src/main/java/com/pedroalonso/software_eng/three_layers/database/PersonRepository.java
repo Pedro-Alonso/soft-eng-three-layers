@@ -89,4 +89,8 @@ public class PersonRepository {
                 .filter(person -> person.getId().equals(id))
                 .findFirst();
     }
+    
+    public ArrayList<Person> getAll(){
+        return repository;
+    }
 }

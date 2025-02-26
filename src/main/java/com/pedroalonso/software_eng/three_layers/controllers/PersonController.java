@@ -39,4 +39,8 @@ public class PersonController {
         Optional<Person> nullishPerson = personRepository.getById(id);
         return nullishPerson.orElse(null);
     }
+    
+    public ArrayList<Person> getAll(){
+        return personRepository.getAll();
+    }
 }
